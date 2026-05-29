@@ -27,7 +27,7 @@ logger = setup_logger(__name__)   #给每个文件单独创建日志器，用来
 """
 
 """
-    2026年5月29日，新增问题级MD5缓存，优化RAG召回模块，流程更新如下：
+    2026年5月29日上午，新增问题级MD5缓存，优化RAG召回模块，流程更新如下：
     
         用户问题
           ↓
@@ -44,6 +44,33 @@ logger = setup_logger(__name__)   #给每个文件单独创建日志器，用来
         拼接上下文 + 送入 LLM
                ↓
         生成回答并写入【问题级MD5缓存】
+       ↓
+返回回答
+"""
+
+"""
+    2026年5月29日下午，升级为：MD5精确缓存 + 标签语义缓存 双层缓存
+    流程更新如下：
+
+        用户问题
+          ↓
+        【1. MD5精确缓存查询】
+          ├─ 命中 → 直接返回
+          └─ 未命中 → 【2. 标签语义缓存查询】
+               ├─ 命中 → 直接返回
+               └─ 未命中 → 进入完整RAG流程
+                    ↓
+        向量检索（召回 Top10）
+               ↓
+        BM25检索 + RRF融合
+               ↓
+        重排模型打分 + 重新排序
+               ↓
+        截取最终 Top3 最相关文档
+               ↓
+        拼接上下文 + 送入 LLM
+               ↓
+        生成回答并写入【MD5缓存 + 标签缓存】
        ↓
 返回回答
 """
@@ -84,7 +111,7 @@ def get_llm():
         llm_kwargs["model_kwargs"] = llm_cfg["model_kwargs"]
     return ChatOpenAI(**llm_kwargs)
 
-# 【新】核心RAG主逻辑（召回 + 重拍 + 截断Top-K）,参数是用户问题
+# 【新】核心RAG主逻辑
 def rag_summary(question: str) -> str:
 
     vs_cfg = get_vector_store_config()
@@ -92,8 +119,8 @@ def rag_summary(question: str) -> str:
     retrieve_top = vs_cfg.get("retrieve_top", 10)  # 先检索召回10篇
     final_top = vs_cfg.get("final_top", 3)  # 重排后只是保留 Top-3
 
-    # 【新】1 优先查询问答的缓存
-    cache_ans = get_question_cache(question)
+    # 【新】1 使用双层统一缓存查询
+    cache_ans = get_combined_cache(question)
     if cache_ans is not None:
         return cache_ans
 
@@ -137,7 +164,7 @@ def rag_summary(question: str) -> str:
     response = chain.invoke({"context": context, "question": question})
     answer = response.content
 
-    # 【新】6.写入缓存
-    set_question_cache(question, answer)
+    # 【新】6.写入缓存 + 写入标签缓存
+    set_cache_with_tags(question, answer)
 
     return response.content  # 返回用户结果
