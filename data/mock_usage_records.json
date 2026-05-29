@@ -1,0 +1,45 @@
+{
+  "user_001": {
+    "user_name": "张三",
+    "device_model": "SmartClean X1 Pro",
+    "purchase_date": "2025-10-15",
+    "records": [
+      {"date": "2026-03-01", "mode": "自动清扫", "area": 85.3, "duration": 72, "dust_collected": 12},
+      {"date": "2026-03-03", "mode": "自动清扫", "area": 78.1, "duration": 65, "dust_collected": 9},
+      {"date": "2026-03-05", "mode": "强力清扫", "area": 90.2, "duration": 95, "dust_collected": 15},
+      {"date": "2026-03-08", "mode": "自动清扫+拖地", "area": 102.5, "duration": 88, "dust_collected": 11},
+      {"date": "2026-03-10", "mode": "自动清扫", "area": 80.7, "duration": 68, "dust_collected": 10},
+      {"date": "2026-03-12", "mode": "定点清扫", "area": 35.2, "duration": 28, "dust_collected": 7},
+      {"date": "2026-03-15", "mode": "自动清扫+拖地", "area": 95.6, "duration": 82, "dust_collected": 13},
+      {"date": "2026-03-18", "mode": "自动清扫", "area": 82.4, "duration": 70, "dust_collected": 8},
+      {"date": "2026-03-20", "mode": "强力清扫", "area": 88.9, "duration": 92, "dust_collected": 14},
+      {"date": "2026-03-22", "mode": "自动清扫+拖地", "area": 100.1, "duration": 86, "dust_collected": 11},
+      {"date": "2026-03-25", "mode": "自动清扫", "area": 79.3, "duration": 66, "dust_collected": 9},
+      {"date": "2026-03-28", "mode": "自动清扫+拖地", "area": 93.7, "duration": 80, "dust_collected": 12},
+      {"date": "2026-03-30", "mode": "自动清扫", "area": 81.5, "duration": 69, "dust_collected": 10}
+    ],
+    "total_area_202603": 1093.5,
+    "total_duration_202603": 961,
+    "total_dust_202603": 141,
+    "clean_count_202603": 13
+  },
+  "user_002": {
+    "user_name": "李四",
+    "device_model": "SmartClean X1 Pro",
+    "purchase_date": "2025-12-01",
+    "records": [
+      {"date": "2026-03-02", "mode": "自动清扫", "area": 65.2, "duration": 55, "dust_collected": 8},
+      {"date": "2026-03-05", "mode": "自动清扫+拖地", "area": 72.3, "duration": 62, "dust_collected": 10},
+      {"date": "2026-03-09", "mode": "自动清扫", "area": 60.8, "duration": 50, "dust_collected": 7},
+      {"date": "2026-03-12", "mode": "强力清扫", "area": 70.5, "duration": 78, "dust_collected": 14},
+      {"date": "2026-03-15", "mode": "自动清扫+拖地", "area": 68.9, "duration": 58, "dust_collected": 9},
+      {"date": "2026-03-19", "mode": "自动清扫", "area": 62.4, "duration": 53, "dust_collected": 8},
+      {"date": "2026-03-23", "mode": "自动清扫+拖地", "area": 71.6, "duration": 61, "dust_collected": 11},
+      {"date": "2026-03-27", "mode": "自动清扫", "area": 63.7, "duration": 54, "dust_collected": 7}
+    ],
+    "total_area_202603": 535.4,
+    "total_duration_202603": 471,
+    "total_dust_202603": 74,
+    "clean_count_202603": 8
+  }
+}

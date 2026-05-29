@@ -1,0 +1,23 @@
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-openai>=0.2.0
+chromadb>=0.5.0
+streamlit>=1.30.0
+pypdf>=4.0.0
+pyyaml>=6.0
+sentence-transformers>=2.7.0
+openai>=1.30.0
+requests>=2.31.0
+
+# 新增：BM25 检索
+rank-bm25>=0.2.2
+# 新增：中文分词（BM25 依赖）
+jieba>=0.42.1
+# 新增：MD5、编码、通用工具（Python 内置可不用写，如需显式声明可加）
+# hashlib 为 Python 标准库，无需安装
+# 新增：文本正则处理
+regex>=2024.4.28
+# 新增：重排模型依赖（与 sentence-transformers 互补）
+torch>=2.0.0
+# 日志、基础工具
+python-dotenv>=1.0.0
