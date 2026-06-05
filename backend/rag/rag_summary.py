@@ -2,7 +2,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from rag.vector_store import load_vector_store
 from utils.BM25_utils import init_bm25, bm25_retrieve
-from utils.Cache_utils import get_question_cache, set_question_cache
+from utils.Cache_utils import get_question_cache, set_question_cache, set_cache_with_tags, get_combined_cache
 from utils.config import get_llm_config, get_vector_store_config
 from utils.Fusion_utils import rrf_fusion
 from utils.logger import setup_logger

@@ -1,0 +1,56 @@
+# 扫地机器人智能客服系统配置文件
+
+# 阿里云百炼 API 配置 (兼容 OpenAI SDK)
+llm:
+  api_key: "sk-fyKVHlvmd39RP2Ayod0SiALZ416nF6kspmsal6Bir1PtbqKh"
+  base_url: "https://api.openai-proxy.org/v1"
+  model_name: "gpt-4o-mini"
+  temperature: 0.7
+  max_tokens: 2048
+#  # 百炼 Qwen 模型额外参数（通过 extra_body 传递，如 enable_thinking 开启深度思考）
+#  extra_body:
+#    enable_thinking: false
+
+# HuggingFace 下载配置（国内使用镜像加速）
+huggingface:
+  endpoint: "https://hf-mirror.com"  # 国内镜像加速下载，留空则直连 HuggingFace
+
+# Embedding 模型配置 (使用本地模型)
+embedding:
+  model_name: "BAAI/bge-small-zh-v1.5"
+  device: "cpu"
+
+# 向量库配置【向量数据存入位置】
+vector_store:
+  persist_dir: "./data/vector_store"
+  chunk_size: 500
+  chunk_overlap: 50
+  search_k: 4  # 旧的简单查找top-4
+  retrieve_top: 10  # 新的一轮召回
+  final_top: 3  # 新的打分重排之后做召回
+  # 【新增】
+  md5_record_path: "rag/chunk_md5_record.json"
+
+# 知识库文档
+data:
+  raw_dir: "./data/raw"
+
+# 模拟数据
+mock:
+  usage_records: "./data/mock_usage_records.json"
+
+# 高德天气 API 配置
+weather:
+  api_key: "https://console.amap.com/dev/key/app" # 高德开放平台 Web服务 API Key，留空则使用模拟数据
+  # 申请地址：https://console.amap.com/dev/key/app
+
+# 日志配置
+logging:
+  level: "INFO"
+  format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+
+# Streamlit 配置
+streamlit:
+  title: "扫地机器人智能客服"
+  default_user_id: "user_001"
+
